@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    {% if user.is_authenticated %}
+        {% if user.is_staff %}
+        <div class="container content-section">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form|crispy }}
+                    {{ form.media }}
+                </div>
+                <div class="form-group">
+                    <button class="btn btncolor" type="submit">Saqlash</button>
+                </div>
+            </form>
+        </div>
+        {% else %}
+            <h1>Mumkin emas</h1>
+        {% endif %}
+    {% else %}
+        <h1>Ro'yxatdan o'ting</h1>
+    {% endif %}
+{% endblock content %}

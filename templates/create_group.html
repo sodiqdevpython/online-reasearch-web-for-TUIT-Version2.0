@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% if user.is_staff %}
+    <div class="container content-section shadow">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input class="btn btn-outline-primary" type="submit" value="Yaratish">
+        </form>
+    </div>
+{% else %}
+<h1>Sizga mumkin emas !</h1>
+{% endif %}
+{% endblock content %}

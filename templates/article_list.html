@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container content-section">
+        {% if user.is_authenticated %}
+            {% if user.is_staff %}
+                <h3>Siz yaratgan mavzular ro'yxati</h3><br>
+                {% for group in article %}
+                <a href="{% url 'detail' group.slug %}">{{ forloop.counter }}. {{ group.title|truncatewords:5 }} <b>({{ group.type }}) uchun</b></a><a href="{% url 'edit_article_admin' group.slug %}" style="float:right;" class="btn btncolor btn-sm mt-1 mb-1" href="#">Tahrirlash</a><hr>
+                {% endfor %}
+                <a style="float:right; border: 1px solid green; color: green;" class="btn btn-outline-primary" href="{% url 'create' %}">Yangi mavzu yaratish</a><br>
+            {% else %}
+            <h1>Mumkin emas</h1>
+            {% endif %}
+            {% else %}
+            <h1>Ro'yxatdan o'ting</h1>
+        {% endif %}
+    </div>
+{% endblock content %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% if user.is_staff %}
+    {% if user.teacherarticlecreatenumber.arcticle_number > project_count %}
+    <div class="content-section shadow container">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+            {{ form.media }}
+            <br>
+            <button style="color: blue;" class="btn btn-outline-primary shadow" type="submit">Saqlash</button>
+        </form>
+    </div>
+    <script>
+  
+        const titleInput = document.querySelector('input[name=title');
+        const slugInput = document.querySelector('input[name=slug]');
+        const start_t = document.querySelector('input[name=start_time]');
+        const end_time = document.querySelector('input[name=end_time]');
+        start_t.setAttribute('type', 'date');
+        end_time.setAttribute('type', 'date');
+        const slugify = (val) => {
+            return val.toString().toLowerCase().trim()
+                .replace(/&/g, '-and-') // replacing & with '-and-'
+                .replace(/[\s\W-]+/g, '-') //replcaing spaces, non-word chars and dashes with a single '-'
+        };
+        
+        titleInput.addEventListener('keyup', (e) => {
+            slugInput.setAttribute('value', slugify(titleInput.value));
+        });
+    </script>
+    {% else %}
+    <h1>Sizga faqat {{ user.teacherarticlecreatenumber.arcticle_number }} ta mavzu yaratish mumkin va sizdagi limit tugadi, adminga aytsangiz kengaytirib beradi !</h1>
+    {% endif %}
+{% else %}
+<h1 style="color:red;">Mumkin emas !</h1>
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load socialaccount %}
+{% block content %}
+    <div class="content-section shadow">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="container text-center">
+                <div class="row align-items-start">
+                    <div class="col">
+
+                    </div>
+                    <div class="col">
+                        <p>Faqat Google orqali kirish mumkin</p>
+                        <a style="background-color:cyan; color: black;" href="{% provider_login_url 'google' %}" class="shadow btn btn-outline-primary">
+                            <i class="fab fa-google"></i>
+                            Google orqali kirish
+                        </a>
+                    </div>
+                    <div class="col">
+                        
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container content-section">
+        {% if user.is_authenticated %}
+            {% if user.is_staff %}
+                {% for group in group_list %}
+                <a href="{% url 'group_detail' group.id %}">{{ forloop.counter }}. {{ group.group_name }}</a><br><hr>
+                {% endfor %}
+                <a style="float:right;" class="btn btn-outline-primary" href="{% url 'create_group' %}">Yangi gurux yaratish</a><br>
+            {% else %}
+            <h1>Mumkin emas</h1>
+            {% endif %}
+            {% else %}
+            <h1>Ro'yxatdan o'ting</h1>
+        {% endif %}
+    </div>
+{% endblock content %}
