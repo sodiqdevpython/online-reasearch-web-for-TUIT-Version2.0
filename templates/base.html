@@ -68,10 +68,16 @@
                     <ul>
                         <li><a href="{% url 'home' %}">Asosiy sahifa</a></li>
                         {% if user.is_staff %}
-                            <li><a href="{% url 'groups' %}">Guruxlar</a></li>
                             <li><a href="{% url 'article_list' %}">Mavzular</a></li>	
                         {% endif %}
-                        <li><a href="{% url 'account_logout' %}">Chiqish</a></li>
+                        <li>
+                            <form method="post" action="{% url 'account_logout' %}">
+                                {% csrf_token %}
+                                <li>
+                                    <input type="submit" class="btn btn-outline-primary" value="Chiqish">
+                                </li>
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </div>

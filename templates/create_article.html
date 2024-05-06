@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 {% if user.is_staff %}
-    {% if user.teacherarticlecreatenumber.arcticle_number > project_count %}
+    {% if is_allowed %}
     <div class="content-section shadow container">
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}

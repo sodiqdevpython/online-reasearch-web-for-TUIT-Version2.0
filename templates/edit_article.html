@@ -2,8 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
     {% now "d.m.Y" as current_time %}
-    {% if current_time >= object.start_time|date:"d.m.Y" and current_time < object.end_time|date:"d.m.Y" %}
-        <div class="container content-section">
+        <div class="container-fluid content-section">
             <h3 style="color:red;">Diqqat !</h3>
             <p>Siz yozgan maqolada ushbu bob lar mavjud bo'lishi kerak: </p>
             <p>1-Bob: {{object.bob1}}</p>
@@ -11,7 +10,7 @@
             <p>3-Bob: {{object.bob3}}</p>
             <form method="POST">
                 {% csrf_token %}
-                <div class="form-group container">
+                <div class="form-group container-fluid">
                     {{ form|crispy }}
                     {{ form.media }}
                 </div>
@@ -20,7 +19,4 @@
                 </div>
             </form>
         </div>
-    {% else %}
-    <h1>Mumkin emas !</h1>
-    {% endif %}
 {% endblock content %}
